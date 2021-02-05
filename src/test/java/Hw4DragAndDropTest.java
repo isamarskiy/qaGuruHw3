@@ -1,4 +1,5 @@
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -9,15 +10,20 @@ public class Hw4DragAndDropTest {
 
     @BeforeAll
     static void setup() {
-        Configuration.startMaximized = true;
+        //Configuration.startMaximized = true;
+        //Configuration.browser = "firefox";
     }
 
     @Test
     void DragAndDropTest(){
         open("https://the-internet.herokuapp.com/drag_and_drop");
-        $("#column-b").dragAndDropTo("#column-a");
+        SelenideElement
+                a = $x("//div[@id = 'column-a']"),
+                b = $x("//div[@id = 'column-b']");
+        //a.dragAndDropTo(b);
+        actions().clickAndHold(a).moveToElement(b).perform();
         //check
-        $("#column-a header").shouldHave(text("B"));
-        $("#column-b header").shouldHave(text("A"));
+        a.shouldHave(text("B"));
+        b.shouldHave(text("A"));
     }
 }
