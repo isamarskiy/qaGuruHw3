@@ -10,8 +10,7 @@ public class Hw4DragAndDropTest {
 
     @BeforeAll
     static void setup() {
-        //Configuration.startMaximized = true;
-        //Configuration.browser = "firefox";
+        Configuration.startMaximized = true;
     }
 
     @Test
